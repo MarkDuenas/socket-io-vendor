@@ -10,7 +10,7 @@ setInterval(() => {
   console.log(new Date());
   const order = {
     storeID: "123",
-    storeName: "Random Store",
+    storeName: "1-206-flowers",
     orderID: faker.random.uuid(),
     customerName: faker.name.findName(),
     address: faker.address.streetAddress(),
@@ -20,6 +20,10 @@ setInterval(() => {
   socket.emit("pickup", order);
 }, 5000);
 
-socket.on("delivered", (payload) => {
+socket.on("delivered", delivered);
+
+function delivered(payload) {
   console.log(`Thank you for delivering`);
-});
+}
+
+module.exports = delivered;
